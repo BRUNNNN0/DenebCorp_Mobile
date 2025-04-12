@@ -27,8 +27,8 @@ class _tela_InicialState extends State<tela_Inicial> {
           Align(
             alignment: Alignment.bottomCenter,
               child: Container(
-                height: 250, // Altura do quadrado
-                width: double.infinity, // Ocupa toda a largura
+                height: 250, 
+                width: double.infinity, 
                 color: Colors.white,
               child: Column(
                 children: [

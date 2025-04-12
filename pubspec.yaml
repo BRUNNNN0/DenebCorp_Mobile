@@ -67,6 +67,7 @@ flutter:
     - assets/image/primeiraTela.png
     - assets/image/google_logo.png
     - assets/image/logo.png
+    - assets/image/pataLogo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
