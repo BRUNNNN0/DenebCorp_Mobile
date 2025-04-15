@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:i_pet/routing/routingHelper.dart';
 import 'package:i_pet/ui/widgets/button/botao_do_google_login.dart';
 import 'package:i_pet/ui/widgets/button/botao_padrao.dart';
 import 'package:i_pet/ui/widgets/spacing_fields/espacamento_14.dart';
@@ -34,23 +35,29 @@ class _tela_InicialState extends State<tela_Inicial> {
                 children: [
                   espaco_18(),
                       
-                    botao(
-                    texto_botao: "Já tenho uma conta", 
-                    larguraEmporc: 0.96, 
-                    cor_botao: Colors.blue, 
-                    cor_borda: Colors.blue, 
-                    cor_daFonte: Colors.white, 
-                    tamanho_daFonte: 18
+                    Botao(
+                    textoBotao: "Já tenho uma conta", 
+                      larguraEmporc: 0.96, 
+                      corBotao: Colors.blue, 
+                      corBorda: Colors.blue, 
+                      corDaFonte: Colors.white, 
+                      tamanhoDaFonte: 18, 
+                      onPressed: (){
+                         Navigator.of(context).pushNamed(RouteGeneratorHelper.kLogin);
+                      }
                     ),
                   espaco_14(),
 
-                    botao(
-                    texto_botao: "Criar nova Conta", 
+                    Botao(
+                    textoBotao: "Criar nova Conta", 
                     larguraEmporc: 0.96, 
-                    cor_botao: Colors.white, 
-                    cor_borda: Colors.blue, 
-                    cor_daFonte: Colors.blue, 
-                    tamanho_daFonte: 18
+                    corBotao: Colors.white, 
+                    corBorda: Colors.blue, 
+                    corDaFonte: Colors.blue, 
+                    tamanhoDaFonte: 18,
+                    onPressed: (){
+                         print('Botão pressionado!');
+                      }
                     ),
                   espaco_25(),
 

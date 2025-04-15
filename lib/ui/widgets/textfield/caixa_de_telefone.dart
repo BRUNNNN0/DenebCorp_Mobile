@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:i_pet/utils/formatters.dart';
-import 'package:i_pet/utils/Validators.dart';
+import 'package:i_pet/utils/ValidatorsCampos.dart';
 
 class CampoTelefone extends StatefulWidget {
   final String label;

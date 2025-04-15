@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_pet/utils/Validators.dart';
+import 'package:i_pet/utils/ValidatorsCampos.dart';
 
 class CampoEmail extends StatefulWidget {
   final String label;

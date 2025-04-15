@@ -64,16 +64,17 @@ class _tela_cadastroState extends State<tela_cadastro> {
                     CampoTelefone(label: "Telefone"),  
                     espaco_18(),
 
-
-                    botao(
-                      texto_botao: "Cadastrar", 
+                    Botao(
+                      textoBotao: "Cadastrar", 
                       larguraEmporc: 0.96, 
-                      cor_botao: Colors.blue, 
-                      cor_borda: Colors.blue, 
-                      cor_daFonte: Colors.white, 
-                      tamanho_daFonte: 18
-                      ),
-                    
+                      corBotao: Colors.blue, 
+                      corBorda: Colors.blue, 
+                      corDaFonte: Colors.white, 
+                      tamanhoDaFonte: 18, 
+                      onPressed: (){
+                         print('Botão pressionado!');
+                      }
+                      )
                   ],
                 ),
               ),
