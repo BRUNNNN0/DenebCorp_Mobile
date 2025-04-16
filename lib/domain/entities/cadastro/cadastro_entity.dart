@@ -1,7 +1,6 @@
 final class CadastroEntity {
   final String firstName;
   final String lastName;
-  final DateTime birthDate;
   final String email;
   final String phoneNumber;
   final String password;
@@ -10,7 +9,6 @@ final class CadastroEntity {
     required this.firstName,
     required this.lastName,
     required this.password,
-    required this.birthDate,
     required this.email,
     required this.phoneNumber,
   });
@@ -22,7 +20,6 @@ final class CadastroEntity {
         "email": email,
         "phoneNumber": phoneNumber,
         "password": password,
-        "birthDate": birthDate
     };
   }
 }

@@ -30,7 +30,7 @@ final class CadastroViewmodel extends Cubit<IRequestState<void>> {
       }
 
       // Validação da senha
-      if (entity.password.length < 6) {
+      if (entity.password.length < 8) {
         throw RegisterWeakPasswordException();
       }
 
