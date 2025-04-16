@@ -21,7 +21,8 @@ final class LoginViewModel extends Cubit<IRequestState<String>> {
       if (!UtilValidator.isValidEmail(login)) throw EmailInvalidException();
       if (!UtilValidator.isValidPassword(password)) throw PasswordInvalidException();
 
-      final String token = await _repository.authenticationAsync(LoginEntity(login: login, password: password)).toString()!;
+      final String token = await _repository.authenticationAsync(LoginEntity(login: login, password: password))!;
+      debugPrint("data: $token.trim().isNotEmpty");
       if (token.trim().isNotEmpty) _onNavigateGoPerfil();
       debugPrint("data: $token");
       _emitter(RequestCompletedState(value: token));
