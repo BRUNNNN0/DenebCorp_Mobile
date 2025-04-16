@@ -1,3 +1,4 @@
+
 import 'package:i_pet/configs/environment_helper.dart';
 import 'package:i_pet/data/datasources/core/data_source.dart';
 import 'package:i_pet/domain/entities/core/http_response_entity.dart';
@@ -10,14 +11,24 @@ base class RemoteDataSource implements IRemoteDataSource {
   final IClockHelper _clockHelper;
   const RemoteDataSource(this._http, this._environment, this._clockHelper);
 
-  @override
-  Future<HttpResponseEntity> get(String url) async {
-    try {
-      return await _http.get(url);
-    } catch (_) {
-      rethrow;
+@override
+Future<HttpResponseEntity> get(String url, [String? token]) async {
+  try {
+    // Prepare headers with the token if provided
+    Map<String, String> headers = {};
+    if (token != null) {
+      headers['Authorization'] = 'Bearer $token';
     }
+
+    // Call the _http.get method with options containing the headers
+    return await _http.get(
+      url,
+      headers: headers, // passing headers as part of the parameters
+    );
+  } catch (_) {
+    rethrow;
   }
+}
 
   @override
   Future<HttpResponseEntity?> post(String url, [String? data]) async {

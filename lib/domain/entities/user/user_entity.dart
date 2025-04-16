@@ -22,9 +22,9 @@ final class UserEntity {
   });
 
 
-  static UserEntity _fromMap({
-    required Map<String, dynamic> userMap, 
-  }) {
+  static UserEntity fromMap(
+      Map<String, dynamic> userMap, 
+  ) {
     return UserEntity(
       id: userMap[kKeyId],
       firstName: userMap[kKeyfirstName],

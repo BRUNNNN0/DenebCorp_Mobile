@@ -37,7 +37,7 @@ abstract interface class INonRelationalDataSource {
 }
 
 abstract interface class IRemoteDataSource {
-  Future<HttpResponseEntity>? get(String url);
+  Future<HttpResponseEntity>? get(String url, [String? data]);
   Future<HttpResponseEntity?>? post(String url, [String? data]);
   Future<HttpResponseEntity?>? put(String url, [String? data]);
   Future<HttpResponseEntity?>? patch(String url, [String? data]);

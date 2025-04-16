@@ -12,5 +12,6 @@ final class EnvironmentHelper implements IEnvironmentHelper {
   String? get urlAuthentication => '$_urlBase/auth/login';
 
   @override
-  String get urlUserInformation => '$_urlBase/user_information';
+  String get urlUserInformation => '$_urlBase/users/me';
+
 }

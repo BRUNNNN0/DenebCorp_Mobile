@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:i_pet/configs/data_base_schema_helper.dart';
 import 'package:i_pet/data/datasources/core/data_source.dart';
 import 'package:i_pet/domain/entities/core/http_response_entity.dart';
@@ -31,6 +32,7 @@ final class LoginRepository implements ILoginRepository {
   }
 
   Future<bool> _saveTokenAsync(String token) {
+    debugPrint("teste: $_nonRelationalDataSource.saveString(DataBaseNoSqlSchemaHelper.kUserToken, token).toString()");
     return _nonRelationalDataSource.saveString(DataBaseNoSqlSchemaHelper.kUserToken, token)!;
   }
 

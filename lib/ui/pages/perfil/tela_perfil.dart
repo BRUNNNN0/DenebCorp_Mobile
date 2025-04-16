@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_pet/ui/pages/perfil/view_models/tela_perfil_factory_viewmodel.dart';
+import 'package:i_pet/ui/pages/perfil/view_models/tela_perfil_viewmodel.dart';
+import 'package:i_pet/ui/pages/perfil/widgets/tela_perfil_widgets.dart';
 import 'package:i_pet/ui/widgets/TextsUser/descricao_user.dart';
 import 'package:i_pet/ui/widgets/TextsUser/nome_user.dart';
 import 'package:i_pet/ui/widgets/backgroud/fundo_degrade_azul_claro.dart';
@@ -8,14 +12,22 @@ import 'package:i_pet/ui/widgets/spacing_fields/espacamento_14.dart';
 
 
 
-class TelaPerfil extends StatefulWidget {
+class TelaPerfil extends StatelessWidget {
   const TelaPerfil({super.key});
-
   @override
-  State<TelaPerfil> createState() => _TelaPerfilState();
+  Widget build(BuildContext context) {
+    return BlocProvider<TelaPerfilViewModel>(
+      create: TelaPerfilFactoryViewmodel().create,
+      child: _tela_perfil(),
+    );
+  }
 }
 
-class _TelaPerfilState extends State<TelaPerfil> {
+class _tela_perfil extends StatelessWidget {
+   
+  const _tela_perfil();
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +69,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
                     larguraEmPorcentagem: 0.8, 
                     icone: Icon(Icons.edit, color: const Color.fromARGB(255, 0, 19, 34)), 
                     onPressed: () {
-                      print("ok");
+                       ;
                     }
                   ),
 
@@ -73,7 +85,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
                     icone: Image.asset("assets/image/miniIconePata.png",
                       width: 24,height: 24,), 
                     onPressed: () {
-                      print("ok");
+                       ;
                     }
                   ),
 
@@ -88,12 +100,12 @@ class _TelaPerfilState extends State<TelaPerfil> {
                     larguraEmPorcentagem: 0.8, 
                     icone: Icon(Icons.login_outlined, color: const Color.fromARGB(255, 0, 19, 34)), 
                     onPressed: () {
-                      print("ok");
+                      ;
                     }
                   ),
-
+            TelaPerfilWidget(),
                 ]
-              )
+              ), 
             )
           )
         ]
