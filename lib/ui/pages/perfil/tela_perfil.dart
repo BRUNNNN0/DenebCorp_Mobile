@@ -44,8 +44,6 @@ class _tela_perfil extends StatelessWidget {
                       children: [
                 ImagemPerfil(caminhoImagem: "assets/image/gabriel.jpg"),
                 espaco_14(),
-                NomeUsuario(nome: 'Gabriel Melnoti'),
-                DescricaoUsuario(descricao:  'Pai e apaixonado por Pet'),
                 ]
               ),
             ),
