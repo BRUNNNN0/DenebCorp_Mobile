@@ -8,7 +8,7 @@ final class EnvironmentHelper implements IEnvironmentHelper {
   const EnvironmentHelper();
 
 
-  String get _urlBase => 'http://192.168.0.215:8080';
+  String get _urlBase => 'http://10.0.0.111:8080';
 
   @override
   String? get urlAuthentication => '$_urlBase/auth/login';
@@ -18,7 +18,5 @@ final class EnvironmentHelper implements IEnvironmentHelper {
 
   String get urlRegister => '$_urlBase/auth/register';
 
-  @override
-  String get urlUserInformation => '$_urlBase/user_information';
 }
 

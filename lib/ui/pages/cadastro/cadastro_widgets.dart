@@ -25,7 +25,6 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
   late final TextEditingController _LnameTextController;
   late final TextEditingController _TelefoneTextController;
   late final TextEditingController _emailTextController;
-  late final TextEditingController _DTNascimentoTextController;
   late final TextEditingController _passwordTextController;
   late final CadastroViewmodel _cadastroViewmodel;
    bool _obscureText = true;
@@ -35,7 +34,6 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
     super.initState();
     _FnameTextController = TextEditingController();
     _LnameTextController = TextEditingController();
-    _DTNascimentoTextController = TextEditingController();
     _TelefoneTextController = TextEditingController();
     _emailTextController = TextEditingController();
     _passwordTextController = TextEditingController();
@@ -44,7 +42,7 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginViewModel, IRequestState<String>>(
+    return BlocBuilder<CadastroViewmodel, IRequestState<void>>(
       builder: (context, state) {
         final bool isProcessing = state is RequestProcessingState;
         return Form(
@@ -82,13 +80,6 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
                 ),
               ),
             ),   	    
-
-            espaco_14(),
-
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              child: campoData(controller: _DTNascimentoTextController)
-              ),
               
             espaco_14(),
 
@@ -191,9 +182,8 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
                               firstName: _FnameTextController.text,
                               lastName: _LnameTextController.text,
                               email: _emailTextController.text,
-                              phoneNumber: _TelefoneTextController.text,
+                              phoneNumber: removerFormatacaoTelefone(_TelefoneTextController.text),
                               password: _passwordTextController.text,
-                             birthDate: DateTime.tryParse(_DTNascimentoTextController.text) ?? DateTime.now(),
 
                             );
 
@@ -249,4 +239,8 @@ class _CampoDataCadastroState extends State<CampoDataCadastro> {
       ),
     );
   }
+}
+
+String removerFormatacaoTelefone(String telefone) {
+  return telefone.replaceAll(RegExp(r'\D'), ''); // Remove tudo que não for dígito
 }
