@@ -9,7 +9,6 @@ import 'package:i_pet/routing/routingHelper.dart';
 import 'package:i_pet/utils/util_text.dart';
 import 'package:i_pet/utils/util_validator.dart';
 
-
 final class LoginViewModel extends Cubit<IRequestState<String>> {
   final ILoginRepository _repository;
   
@@ -23,10 +22,12 @@ final class LoginViewModel extends Cubit<IRequestState<String>> {
       if (!UtilValidator.isValidPassword(password)) throw PasswordInvalidException();
 
       final String token = await _repository.authenticationAsync(LoginEntity(login: login, password: password))!;
+      debugPrint("data: $token.trim().isNotEmpty");
       if (token.trim().isNotEmpty) _onNavigateGoPerfil();
-
+      debugPrint("data: $token");
       _emitter(RequestCompletedState(value: token));
     } catch (error) {
+      debugPrint("data: $error");
       final String erorrDescription = _createErrorDescription(error);
       showSnackBar(erorrDescription);
       _emitter(RequestErrorState(error: error));
