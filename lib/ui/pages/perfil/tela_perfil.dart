@@ -59,53 +59,9 @@ class _tela_perfil extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.9,
               child: Column(
               children: [
-                   
-                   BotaoCMimagem(
-                    textoBotao: "Editar Perfil", 
-                    corBotao: const Color.fromARGB(255, 132, 192, 241), 
-                    corBorda: const Color.fromARGB(255, 132, 192, 241),
-                    corFonte:   const Color.fromARGB(255, 0, 19, 34), 
-                    tamanhoFonte: 18, 
-                    larguraEmPorcentagem: 0.8, 
-                    icone: Icon(Icons.edit, color: const Color.fromARGB(255, 0, 19, 34)), 
-                    onPressed: () {
-                       ;
-                    }
-                  ),
-
-                  espaco_14(),
-
-                  BotaoCMimagem(
-                    textoBotao: "Meus Pets", 
-                    corBotao: const Color.fromARGB(255, 132, 192, 241), 
-                    corBorda: const Color.fromARGB(255, 132, 192, 241),
-                    corFonte:   const Color.fromARGB(255, 0, 19, 34), 
-                    tamanhoFonte: 18, 
-                    larguraEmPorcentagem: 0.8, 
-                    icone: Image.asset("assets/image/miniIconePata.png",
-                      width: 24,height: 24,), 
-                    onPressed: () {
-                       ;
-                    }
-                  ),
-
-                  espaco_14(),
-
-                  BotaoCMimagem(
-                    textoBotao: "Sair da conta", 
-                    corBotao: const Color.fromARGB(255, 132, 192, 241), 
-                    corBorda: const Color.fromARGB(255, 132, 192, 241),
-                    corFonte:   const Color.fromARGB(255, 0, 19, 34), 
-                    tamanhoFonte: 18, 
-                    larguraEmPorcentagem: 0.8, 
-                    icone: Icon(Icons.login_outlined, color: const Color.fromARGB(255, 0, 19, 34)), 
-                    onPressed: () {
-                      ;
-                    }
-                  ),
-            TelaPerfilWidget(),
-                ]
-              ), 
+                TelaPerfilWidget()
+              ]
+            )
             )
           )
         ]
