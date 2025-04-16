@@ -22,12 +22,12 @@ final class PerfilRepository implements IPerfilRepository {
 
   @override
   Future<UserEntity> getUserDataAsync() async {
-    final String token = _nonRelationalDataSource.loadString(DataBaseNoSqlSchemaHelper.kUserToken).toString();
-    debugPrint("token: $token");
+    final token = await _nonRelationalDataSource.loadString(DataBaseNoSqlSchemaHelper.kUserToken);
+    debugPrint("tokenProfile: $token");
     final HttpResponseEntity httpResponse = (await _remoteDataSource.get(_urlUserInformation, token))!;
-
+    debugPrint("testeProfile: ${httpResponse.data}");
     final usuario = UserEntity.fromMap(httpResponse.data as Map<String, dynamic>);
-    
+    debugPrint("usuario: $usuario");
     return usuario;
   }
 

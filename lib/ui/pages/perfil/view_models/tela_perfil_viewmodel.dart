@@ -12,12 +12,12 @@ final class TelaPerfilViewModel extends Cubit<IRequestState<String>> {
   
   TelaPerfilViewModel(this._repository) : super(const RequestInitiationState());
 
-  void onLoad() async {
+  void pegarUsuario() async {
     try {
       _emitter(RequestProcessingState());
 
       final UserEntity user = await _repository.getUserDataAsync()!;
-      debugPrint("user: $user");
+      debugPrint("userTeste: ${user.toMap()}");
       _emitter(RequestCompletedState());
     } catch (error) {
       debugPrint("data: $error");

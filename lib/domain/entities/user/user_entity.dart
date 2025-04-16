@@ -2,12 +2,11 @@ import 'dart:convert';
 
 
 final class UserEntity {
-  final String id;
+  final int id;
   final String firstName;
   final String lastName;
   final String email;
   final String phoneNumber;
-  final String profileImage;
 
 
   const UserEntity({
@@ -16,7 +15,7 @@ final class UserEntity {
     required this.lastName,
     required this.email,
     required this.phoneNumber,
-    required this.profileImage,
+
  
 
   });
@@ -31,7 +30,7 @@ final class UserEntity {
       lastName: userMap[kKeylastName],
       phoneNumber: userMap[kKeyphoneNumber],
       email: userMap[kKeyEmail],
-      profileImage: userMap[kKeyProfileImage],
+
 
     );
   }
@@ -43,15 +42,15 @@ final class UserEntity {
       kKeylastName: lastName,
       kKeyEmail: email,
       kKeyphoneNumber: phoneNumber,
-      kKeyProfileImage: profileImage
+ 
     };
   }
 
   static const String kKeyId = 'id';
-  static const String kKeyfirstName = 'nome';
-  static const String kKeylastName = 'sobrenome';
+  static const String kKeyfirstName = 'firstName';
+  static const String kKeylastName = 'lastName';
   static const String kKeyEmail = 'email';
-  static const String kKeyphoneNumber = 'telefone';
-  static const String kKeyProfileImage = 'fotoPerfil';
+  static const String kKeyphoneNumber = 'phoneNumber';
+
 
 }

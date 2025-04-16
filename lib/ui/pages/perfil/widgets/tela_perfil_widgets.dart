@@ -31,8 +31,7 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget> {
     return BlocBuilder<TelaPerfilViewModel, IRequestState<String>>(
       builder: (context, state) {
         final bool isProcessing = state is RequestProcessingState;
-        return Scaffold(
-          body: BotaoCMimagem(
+        return BotaoCMimagem(
                     textoBotao: "testes", 
                     corBotao: const Color.fromARGB(255, 132, 192, 241), 
                     corBorda: const Color.fromARGB(255, 132, 192, 241),
@@ -43,14 +42,14 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget> {
                     onPressed: () {
                       onLoad();
                     }
-                  ),
-        );
+                  );
+
       },
     );
   }
 
   void onLoad() {
-    _telaPerfilViewModel.onLoad();
+    _telaPerfilViewModel.pegarUsuario();
   }
 }
 
