@@ -6,7 +6,7 @@ abstract interface class IEnvironmentHelper {
 final class EnvironmentHelper implements IEnvironmentHelper {
   const EnvironmentHelper();
 
-  String get _urlBase => 'http://192.168.56.1:8080';
+  String get _urlBase => 'http://localhost:8080';
 
   @override
   String? get urlAuthentication => '$_urlBase/auth/login';
