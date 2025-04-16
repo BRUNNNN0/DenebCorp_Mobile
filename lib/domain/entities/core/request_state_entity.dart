@@ -1,4 +1,5 @@
 import 'package:i_pet/core/enum/app_state_enum.dart';
+import 'package:i_pet/domain/entities/user/user_entity.dart';
 
 abstract class IRequestState<T> {
   final T? dataOrNull;

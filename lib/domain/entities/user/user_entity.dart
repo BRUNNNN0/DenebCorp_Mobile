@@ -16,8 +16,6 @@ final class UserEntity {
     required this.email,
     required this.phoneNumber,
 
- 
-
   });
 
 
