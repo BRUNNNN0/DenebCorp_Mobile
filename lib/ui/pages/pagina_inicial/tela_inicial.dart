@@ -55,7 +55,7 @@ class _tela_InicialState extends State<tela_Inicial> {
                     corDaFonte: Colors.blue, 
                     tamanhoDaFonte: 18,
                     onPressed: (){
-                         print('Botão pressionado!');
+                         Navigator.of(context).pushNamed(RouteGeneratorHelper.kCadastro);
                       }
                     ),
                   espaco_25(),

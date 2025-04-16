@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:i_pet/ui/pages/cadastro/cadastro_widgets.dart';
+import 'package:i_pet/ui/pages/cadastro/view_model/cadastro_factory_viewmodel.dart';
+import 'package:i_pet/ui/pages/cadastro/view_model/cadastro_viewmodel.dart';
 import 'package:i_pet/ui/widgets/button/botao_padrao.dart';
 import 'package:i_pet/ui/widgets/spacing_fields/espacamento_14.dart';
 import 'package:i_pet/ui/widgets/spacing_fields/espacamento_18.dart';
@@ -11,15 +15,21 @@ import 'package:i_pet/ui/widgets/textfield/caixa_de_data.dart';
 import 'package:intl/intl.dart';
 
 
-class tela_cadastro extends StatefulWidget {
+class tela_cadastro extends StatelessWidget {
   const tela_cadastro({super.key});
 
   @override
-  State<tela_cadastro> createState() => _tela_cadastroState();
+  Widget build(BuildContext context) {
+    return BlocProvider<CadastroViewmodel>(
+      create: CadastroFactoryViewmodel().create,
+      child: _tela_cadastro(),
+    );
+  }
 }
 
-class _tela_cadastroState extends State<tela_cadastro> {
-    TextEditingController _dataController = TextEditingController();
+class _tela_cadastro extends StatelessWidget {
+  const _tela_cadastro();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,38 +53,7 @@ class _tela_cadastroState extends State<tela_cadastro> {
                 child: Column(
                   children: [
 
-                    CampoEmail(label: "Email"),
-                    espaco_14(),
-
-                    caixadetexto(label: "Nome"),
-                    espaco_14(),
-
-                    caixadetexto(label: "Sobrenome"),
-                    espaco_14(),
-
-                    campoSenha(label: "Senha"),
-                    espaco_14(),
-
-                    campoSenha(label: "Confirmar Senha"),
-                    espaco_14(),
-                    
-                    campoData(controller: _dataController),
-                    espaco_14(),
-
-                    CampoTelefone(label: "Telefone"),  
-                    espaco_18(),
-
-                    Botao(
-                      textoBotao: "Cadastrar", 
-                      larguraEmporc: 0.96, 
-                      corBotao: Colors.blue, 
-                      corBorda: Colors.blue, 
-                      corDaFonte: Colors.white, 
-                      tamanhoDaFonte: 18, 
-                      onPressed: (){
-                         print('Botão pressionado!');
-                      }
-                      )
+                    CadastroWidgets()
                   ],
                 ),
               ),
