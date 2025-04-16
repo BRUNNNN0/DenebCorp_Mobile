@@ -37,7 +37,7 @@ final class NonRelationalDataSource implements INonRelationalDataSource {
 
   @override
   Future<String?> loadString(String keyName) {
-    return Future.value(_storage.loadString(keyName));
+    return _storage.loadString(keyName);
   }
 
   @override

@@ -10,7 +10,7 @@ import 'package:i_pet/domain/entities/core/http_response_entity.dart';
 import 'package:i_pet/core/library/extensions.dart';
 
 abstract interface class IHttpService {
-  Future<HttpResponseEntity> get(String url, {int? secondsTimeout});
+  Future<HttpResponseEntity> get(String url, {int? secondsTimeout, dynamic headers});
   Future<HttpResponseEntity> post(String url, {int? secondsTimeout, dynamic data});
   Future<HttpResponseEntity> put(String url, {int? secondsTimeout, dynamic data});
   Future<HttpResponseEntity> patch(String url, {int? secondsTimeout, dynamic data});
@@ -26,16 +26,23 @@ final class HttpService implements IHttpService {
     this._nonRelationalDataSource,
   );
 
-  @override
-  Future<HttpResponseEntity> get(String url, {int? secondsTimeout}) async {
-    try {
-      await _changeDioOptionsAsync();
-      final Response response = await _dio.get(url);
-      return _createHttpResponseFromResponse(response);
-    } catch (error) {
-      throw error.convertDioToHttpException();
-    }
+@override
+Future<HttpResponseEntity> get(String url, {int? secondsTimeout, dynamic headers}) async {
+  try {
+    await _changeDioOptionsAsync();
+
+    final Response response = await _dio.get(
+      url,
+      options: Options(
+        headers: headers,
+      ),
+    );
+
+    return _createHttpResponseFromResponse(response);
+  } catch (error) {
+    throw error.convertDioToHttpException();
   }
+}
 
   @override
   Future<HttpResponseEntity> post(String url, {int? secondsTimeout, dynamic data}) async {
