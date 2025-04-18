@@ -4,6 +4,7 @@ import 'package:i_pet/ui/pages/login/view_models/login_factory_viewmodel.dart';
 import 'package:i_pet/ui/pages/login/view_models/login_viewmodel.dart';
 import 'package:i_pet/ui/pages/login/widgets/login_widgets.dart';
 import 'package:i_pet/ui/widgets/backgroud/fundo_degrade_azul_claro.dart';
+import 'package:i_pet/ui/widgets/spacing_fields/espacamento_14.dart';
 
 class tela_login extends StatelessWidget {
   const tela_login({super.key});
@@ -50,6 +51,7 @@ class _tela_login extends StatelessWidget {
                 ), 
               child: Column(
                 children: [
+                    espaco_14(),
                     LoginFormWidget()
                 ]
               )

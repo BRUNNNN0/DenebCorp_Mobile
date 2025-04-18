@@ -38,7 +38,7 @@ class _tela_cadastro extends StatelessWidget {
         children: [
    
           Padding(
-            padding: const EdgeInsets.only(top: 50), // Ajusta a posição da logo
+            padding: const EdgeInsets.only(top: 50), 
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.9, 
               child: Image.asset("assets/image/logo.png", fit: BoxFit.contain),
@@ -52,8 +52,7 @@ class _tela_cadastro extends StatelessWidget {
                 padding: EdgeInsets.all(16), 
                 child: Column(
                   children: [
-
-                    CadastroWidgets()
+                    Center(child: CadastroWidgets())
                   ],
                 ),
               ),

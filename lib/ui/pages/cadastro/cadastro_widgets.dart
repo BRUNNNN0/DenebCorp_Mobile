@@ -57,6 +57,10 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   hintText: UtilText.labelFirsname,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10)
+                    ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -74,6 +78,10 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   hintText: UtilText.labelLastname,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -93,6 +101,10 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   hintText: UtilText.labelTelefone,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -111,6 +123,10 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   hintText: UtilText.labelLoginYourEmail,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -129,6 +145,10 @@ class _CadastroWidgetsState extends State<CadastroWidgets> {
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       hintText: UtilText.labelLoginYourPassword,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

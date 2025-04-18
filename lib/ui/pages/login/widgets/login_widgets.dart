@@ -38,7 +38,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           child: Column(
             children: [
               SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
+              width: MediaQuery.of(context).size.width * 0.85,
               child: TextFormField(
                 enabled: !isProcessing,
                 controller: _emailTextController,
@@ -46,6 +46,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   hintText: UtilText.labelLoginYourEmail,
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -61,7 +65,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  width: MediaQuery.of(context).size.width * 0.85,
                   child: TextFormField(
                     enabled: !isProcessing,
                     controller: _passwordTextController,
@@ -69,6 +73,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       hintText: UtilText.labelLoginYourPassword,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),                      
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -93,7 +101,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  width: MediaQuery.of(context).size.width * 0.85,
                   child: ElevatedButton(
                     onPressed: onAuth,
                     child: !isProcessing ? Text(
