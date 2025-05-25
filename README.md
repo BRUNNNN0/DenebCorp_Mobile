@@ -5,7 +5,7 @@ A new Flutter project.
 
 Projeto APP I_pet, 
 
-Tela incial, ja funcional com Login e Cadastro, mas sem implementar o Login com o Google:
+Tela incial, ja funcional com Login e Cadastro, Integração com Login via Google será incluída em uma segunda versão:
 ![Tela_Inicial](https://github.com/user-attachments/assets/969a08d3-e113-4472-a8ac-74cd93e7142a)
 
 Tela de Login, ja funcionando com a API:
