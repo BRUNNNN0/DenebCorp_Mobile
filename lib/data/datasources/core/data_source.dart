@@ -45,3 +45,8 @@ abstract interface class IRemoteDataSource {
   IEnvironmentHelper? get environment;
   DateTime? get currentDateTime;
 }
+
+abstract interface class IRemoteFireSource{
+   Future<String> registerAuth (String email, String password);
+   Future<void> registerInfoUser (String urlID, Map<String, dynamic> userData);
+}

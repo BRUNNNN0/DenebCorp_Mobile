@@ -12,11 +12,13 @@ final class UtilText {
   static const String labelLastname = 'Sobrenome';
   static const String labelDTNascimento = 'Data de Nascimento';
   static const String labelTelefone = 'Telefone';
+  static const String labelCPF = 'seu CPF';
 
 
 
   static const String labelRegisterInvalidEmail = 'Email invalido!';
   static const String labelRegisterInvalidPhone = 'Telefone invalido!';
   static const String labelRegisterWeakPassword = 'Senha invalida!';
+  static const String labelRegisterEmailInUse = 'Email já cadastrado!';
   static const String labelRegisterFailure = 'Falha ao Registrar!';
 }

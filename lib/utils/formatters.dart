@@ -5,4 +5,9 @@ class Formatters {
     mask: '(##) # ####-####',
     filter: {"#": RegExp(r'[0-9]')}, // Apenas números
   );
+  
+  static final cpfFormatter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {"#": RegExp(r'[0-9]')}, // Apenas números
+  );
 }

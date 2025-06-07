@@ -12,3 +12,5 @@ final class RegisterPhoneInvalidException implements IRegisterException {}
 
 
 final class RegisterWeakPasswordException implements IRegisterException {}
+
+final class RegisterEmailAlreadyInUseException implements IRegisterException{}

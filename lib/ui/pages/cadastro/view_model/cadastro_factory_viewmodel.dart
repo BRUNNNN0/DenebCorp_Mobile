@@ -8,9 +8,9 @@ import 'package:i_pet/ui/pages/login/view_models/login_viewmodel.dart';
 final class CadastroFactoryViewmodel implements IFactoryViewModel<CadastroViewmodel> {
   @override
   CadastroViewmodel create(BuildContext context) {
-    final IRemoteDataSource remoteDataSource = RemoteFactoryDataSource().create();
+    final IRemoteFireSource remoteFireSource = RemoteFactoryFireSource().create();
     final INonRelationalDataSource nonRelationalDataSource = NonRelationalFactoryDataSource().create();
-    final IRegisterRepository registerRepository = RegisterRepository(remoteDataSource, nonRelationalDataSource);
+    final IRegisterRepository registerRepository = RegisterRepository(remoteFireSource);
     return CadastroViewmodel(registerRepository);
   }
 
