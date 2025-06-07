@@ -17,8 +17,9 @@ final class TelaPerfilViewModel extends Cubit<IRequestState<UserEntity>> {
       _emitter(RequestProcessingState());
 
       final UserEntity user = await _repository.getUserDataAsync()!;
-      debugPrint("userTeste: ${user.toMap()}");
+  
       _emitter(RequestCompletedState(value: user));
+      
     } catch (error) {
       debugPrint("data: $error");
       final String erorrDescription = _createErrorDescription(error);

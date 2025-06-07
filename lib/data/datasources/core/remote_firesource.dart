@@ -68,6 +68,35 @@ Future<String?> acessar(LoginEntity entity) async {
   }
 }
 
+Future<Map<String, dynamic>> getUserInfo(String? urlID) async {
+  final auth = _environment.auth!;
+  final firestore = _environment.firestore!;
+
+    if (urlID == null) {
+      throw Exception('Token do usuário não encontrado.');
+    }
+
+  try {
+    final currentUser = auth.currentUser;
+
+    if (currentUser == null) {
+      throw Exception('Usuário não autenticado.');
+    }
+
+    final docRef = firestore.collection('users').doc(currentUser.uid);
+    final docSnapshot = await docRef.get();
+
+    if (!docSnapshot.exists) {
+      throw Exception('Dados do usuário não encontrados no Firestore.');
+    }
+
+    return docSnapshot.data()!;
+    
+  } catch (e) {
+    throw Exception('Erro ao buscar dados do usuário: $e');
+  }
+}
+
 }
 
 

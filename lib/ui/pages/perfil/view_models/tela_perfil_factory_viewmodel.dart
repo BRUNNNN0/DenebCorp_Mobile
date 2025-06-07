@@ -6,9 +6,9 @@ import 'package:i_pet/ui/pages/perfil/view_models/tela_perfil_viewmodel.dart';
 final class TelaPerfilFactoryViewmodel implements IFactoryViewModel<TelaPerfilViewModel> {
   @override
   TelaPerfilViewModel create(BuildContext context) {
-    final IRemoteDataSource remoteDataSource = RemoteFactoryDataSource().create();
+    final IRemoteFireSource remoteFireSource = RemoteFactoryFireSource().create();
     final INonRelationalDataSource nonRelationalDataSource = NonRelationalFactoryDataSource().create();
-    final IPerfilRepository perfilRepository = PerfilRepository(remoteDataSource, nonRelationalDataSource);
+    final IPerfilRepository perfilRepository = PerfilRepository(remoteFireSource, nonRelationalDataSource);
     return TelaPerfilViewModel(perfilRepository);
   }
 

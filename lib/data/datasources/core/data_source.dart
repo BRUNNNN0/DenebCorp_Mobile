@@ -51,4 +51,5 @@ abstract interface class IRemoteFireSource{
    Future<String> registerAuth (String email, String password);
    Future<void> registerInfoUser (String urlID, Map<String, dynamic> userData);
    Future<String?> acessar (LoginEntity entity);
+   Future<Map<String, dynamic>> getUserInfo(String? urlID);
 }

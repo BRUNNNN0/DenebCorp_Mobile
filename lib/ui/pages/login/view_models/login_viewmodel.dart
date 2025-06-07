@@ -38,7 +38,7 @@ print(token);
   }
 
   void _onNavigateGoPerfil() {
-    getIt<IAppService>().navigateNamedReplacementTo(RouteGeneratorHelper.kPerfil);
+    getIt<IAppService>().navigateNamedReplacementTo(RouteGeneratorHelper.khome);
   }
 
   String _createErrorDescription(Object? error) {
