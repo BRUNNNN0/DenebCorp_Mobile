@@ -7,6 +7,7 @@ import 'package:i_pet/data/datasources/core/remote_datasource.dart';
 import 'package:i_pet/core/service/clock_helper.dart';
 import 'package:i_pet/core/service/http_service.dart';
 import 'package:i_pet/core/service/storage_service.dart';
+import 'package:i_pet/data/datasources/core/remote_firesource.dart';
 
 
 
@@ -46,4 +47,15 @@ final class RemoteFactoryDataSource {
       clockHelper,
     );
   }
+}
+
+final class RemoteFactoryFireSource{
+  IRemoteFireSource create() {
+    final IEnvironmentHelper environmentHelper = getIt<IEnvironmentHelper>();  
+    
+    return RemoteFiresource(
+      environmentHelper,
+    );
+  }
+    
 }

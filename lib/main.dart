@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:i_pet/configs/injection_container.dart' as injector;
 import 'package:flutter/material.dart';
 import 'package:i_pet/core/service/IApp_Service.dart';
+import 'package:i_pet/firebase_options.dart';
 import 'package:i_pet/routing/routingHelper.dart';
 import 'package:i_pet/ui/pages/cadastro/tela_cadastro.dart';
 import 'package:i_pet/ui/pages/login/tela_login.dart';
@@ -14,6 +16,9 @@ import 'package:i_pet/utils/util.dart';
 
 void main () async {
   WidgetsFlutterBinding.ensureInitialized(); // necessário
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   await injector.init();
   runApp(AppWidget());
 }
