@@ -60,6 +60,7 @@ final class CadastroViewmodel extends Cubit<IRequestState<void>> {
     if (error is RegisterEmailInvalidException) return UtilText.labelRegisterInvalidEmail;
     if (error is RegisterPhoneInvalidException) return UtilText.labelRegisterInvalidPhone;
     if (error is RegisterWeakPasswordException) return UtilText.labelRegisterWeakPassword;
+    if (error is RegisterEmailAlreadyInUseException) return UtilText.labelRegisterEmailInUse;
     return UtilText.labelRegisterFailure;
   }
 

@@ -10,37 +10,26 @@ abstract interface class IRegisterRepository {
 }
 
 final class RegisterRepository implements IRegisterRepository {
-  final IRemoteDataSource _remoteDataSource;
-  final INonRelationalDataSource _nonRelationalDataSource;
+  final IRemoteFireSource _remoteFireSource;
 
-  const RegisterRepository(this._remoteDataSource, this._nonRelationalDataSource);
+  const RegisterRepository(this._remoteFireSource);
 
   @override
-  Future<void> registerAsync(CadastroEntity register) async {
-    final response = await _remoteDataSource.post(
-      _urlRegister,
-      jsonEncode(register.toMap()),
+Future<void> registerAsync(CadastroEntity register) async {
+  try {
+    // 1. Cria o usuário no Firebase Auth e obtém o userId
+    final userId = await _remoteFireSource.registerAuth(
+      register.email,
+      register.password,
     );
 
-   
-    if (response == null || response.statusCode != 200) {
-      
-      final String? error = response?.data?.toString().toLowerCase();
-
-      if (error != null) {
-        if (error.contains('email')) {
-          throw RegisterEmailInvalidException();
-        } else if (error.contains('phone')) {
-          throw RegisterPhoneInvalidException();
-        } else if (error.contains('password')) {
-          throw RegisterWeakPasswordException();
-        }
-      }
-
-      throw RegisterFailedException();
-    }
+    final userMap = register.toMap();
+    await _remoteFireSource.registerInfoUser(userId, userMap);
+    
+  } on IRegisterException catch (e) {
+    rethrow;
+  } catch (e) {
+    throw RegisterFailedException();
   }
-
-
-  String get _urlRegister => _remoteDataSource.environment?.urlRegister ?? '';
+}
 }
