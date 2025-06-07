@@ -76,18 +76,21 @@ final class MigrateService implements IMigrateService {
     if (newVersion > oldVersion) {}
   }
 
-  Future<void> _createTableUsuario(Database db) async {
-    await db.execute(
-      '''
-      CREATE TABLE IF NOT EXISTS ${DataBaseSchemaHelper.kUser} (
-      ${UserEntity.kKeyId} $kTypeText,
-      ${UserEntity.kKeyfirstName} $kTypeText,
-      ${UserEntity.kKeylastName} $kTypeText,
-      ${UserEntity.kKeyphoneNumber} $kTypeText),
+Future<void> _createTableUsuario(Database db) async {
+  await db.execute(
+    '''
+    CREATE TABLE IF NOT EXISTS ${DataBaseSchemaHelper.kUser} (
+      ${UserEntity.kKeyId} $kTypeText PRIMARY KEY,
+      ${UserEntity.kKeyFirstName} $kTypeText,
+      ${UserEntity.kKeyLastName} $kTypeText,
       ${UserEntity.kKeyEmail} $kTypeText,
-       ''',
+      ${UserEntity.kKeyPhoneNumber} $kTypeText,
+      ${UserEntity.kKeyBirthDate} $kTypeText,
+      ${UserEntity.kKeyCpf} $kTypeText
     );
-  }
+    ''',
+  );
+}
 
   @override
   Future<void> closeDataBase() async {

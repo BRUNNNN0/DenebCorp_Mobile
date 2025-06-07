@@ -15,21 +15,22 @@ abstract interface class IPerfilRepository {
 }
 
 final class PerfilRepository implements IPerfilRepository {
-  final IRemoteDataSource _remoteDataSource;
+  final IRemoteFireSource _remoteFireSource;
   final INonRelationalDataSource _nonRelationalDataSource;
 
-  const PerfilRepository(this._remoteDataSource, this._nonRelationalDataSource);
+  const PerfilRepository(this._remoteFireSource, this._nonRelationalDataSource);
 
   @override
   Future<UserEntity> getUserDataAsync() async {
     final token = await _nonRelationalDataSource.loadString(DataBaseNoSqlSchemaHelper.kUserToken);
-    debugPrint("tokenProfile: $token");
-    final HttpResponseEntity httpResponse = (await _remoteDataSource.get(_urlUserInformation, token))!;
-    debugPrint("testeProfile: ${httpResponse.data}");
-    final usuario = UserEntity.fromMap(httpResponse.data as Map<String, dynamic>);
-    debugPrint("usuario: $usuario");
-    return usuario;
-  }
-
-  String get _urlUserInformation => _remoteDataSource.environment?.urlUserInformation ?? '';
-} 
+    
+    try{
+      final usuario = (await _remoteFireSource.getUserInfo(token))!;
+      final usuarioMAP = UserEntity.fromMap(usuario as Map<String, dynamic>);
+    
+      return usuarioMAP;
+    } on ILoginException catch (e) {
+    rethrow;
+   }
+  } 
+}

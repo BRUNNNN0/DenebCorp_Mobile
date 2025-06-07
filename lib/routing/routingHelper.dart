@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:i_pet/ui/pages/cadastro/tela_cadastro.dart';
+import 'package:i_pet/ui/pages/home/tela_home.dart';
 import 'package:i_pet/ui/pages/login/tela_login.dart';
 import 'package:i_pet/ui/pages/pagina_inicial/tela_inicial.dart';
 import 'package:i_pet/ui/pages/perfil/tela_perfil.dart';
@@ -15,6 +16,7 @@ final class RouteGeneratorHelper{
       kLogin => createRoutePage(const tela_login()),
       kCadastro => createRoutePage(const tela_cadastro()),
       kPerfil => createRoutePage(const TelaPerfil()),
+      khome => createRoutePage(const TelaHome()),
 
       // TODO: Handle this case.
       String() => throw UnimplementedError(),
@@ -47,6 +49,7 @@ static Route<dynamic> createRouteError() {
   static const String kLogin = '/login';
   static const String kCadastro = '/cadastro';
   static const String kPerfil = '/perfil';
+  static const String khome = '/home';
 
 
 }
