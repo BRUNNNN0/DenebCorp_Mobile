@@ -14,20 +14,23 @@ final class LoginViewModel extends Cubit<IRequestState<String>> {
   
   LoginViewModel(this._repository) : super(const RequestInitiationState());
 
-  void onAuthentication(String login, String password) async {
+  void onAuthentication(LoginEntity user) async {
+    
     try {
       _emitter(RequestProcessingState());
 
-      if (!UtilValidator.isValidEmail(login)) throw EmailInvalidException();
-      if (!UtilValidator.isValidPassword(password)) throw PasswordInvalidException();
+      if (!UtilValidator.isValidEmail(user.login)) throw EmailInvalidException();
+      if (!UtilValidator.isValidPassword(user.password)) throw PasswordInvalidException();
 
-      final String token = await _repository.authenticationAsync(LoginEntity(login: login, password: password))!;
-      debugPrint("data: $token.trim().isNotEmpty");
+      final String token = await _repository.authenticationAsync(user)!;
+
+print(token);
+
       if (token.trim().isNotEmpty) _onNavigateGoPerfil();
-      debugPrint("data: $token");
+
       _emitter(RequestCompletedState(value: token));
+
     } catch (error) {
-      debugPrint("data: $error");
       final String erorrDescription = _createErrorDescription(error);
       showSnackBar(erorrDescription);
       _emitter(RequestErrorState(error: error));
@@ -39,8 +42,9 @@ final class LoginViewModel extends Cubit<IRequestState<String>> {
   }
 
   String _createErrorDescription(Object? error) {
+    if(error is LoginNotFoundInformsException) return UtilText.labelLoginNotf;
     if (error is EmailInvalidException) return UtilText.labelLoginInvalidEmail;
-    if (error is PasswordInvalidException) return UtilText.labelLoginInvalidPassword;
+    if (error is PasswordIncorretaException) return UtilText.labelLoginInvalidEmailPass;
     return UtilText.labelLoginFailure;
   }
 
@@ -49,4 +53,3 @@ final class LoginViewModel extends Cubit<IRequestState<String>> {
     emit(state);
   }
 }
-

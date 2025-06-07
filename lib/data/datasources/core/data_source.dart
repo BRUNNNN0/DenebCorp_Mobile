@@ -1,5 +1,6 @@
 import 'package:i_pet/configs/environment_helper.dart';
 import 'package:i_pet/domain/entities/core/http_response_entity.dart';
+import 'package:i_pet/domain/entities/login/login_entity.dart';
 
 
 
@@ -49,4 +50,5 @@ abstract interface class IRemoteDataSource {
 abstract interface class IRemoteFireSource{
    Future<String> registerAuth (String email, String password);
    Future<void> registerInfoUser (String urlID, Map<String, dynamic> userData);
+   Future<String?> acessar (LoginEntity entity);
 }

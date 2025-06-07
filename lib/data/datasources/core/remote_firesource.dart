@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:i_pet/configs/environment_helper.dart';
 import 'package:i_pet/data/datasources/core/data_source.dart';
+import 'package:i_pet/domain/entities/login/login_entity.dart';
 import 'package:i_pet/domain/error/cadastro/cadastro_exception.dart';
-import 'package:i_pet/domain/error/fire_base_exceptions/fireExceptions.dart';
+import 'package:i_pet/domain/error/cadastro/fireExceptionsCadastro.dart';
+import 'package:i_pet/domain/error/login/fireExceptionsAuth.dart';
+import 'package:i_pet/domain/error/login/login_exception.dart';
 
 class RemoteFiresource implements IRemoteFireSource {
   final IEnvironmentHelper _environment;
@@ -12,7 +15,7 @@ class RemoteFiresource implements IRemoteFireSource {
   
   @override
   Future<String> registerAuth(String email, String password) async {
-     final auth = _environment.auth!;
+    final auth = _environment.auth!;
       try{
       final UserCredential = await auth.createUserWithEmailAndPassword(
       email: email,
@@ -25,7 +28,7 @@ class RemoteFiresource implements IRemoteFireSource {
     return userId;
 
   } on FirebaseAuthException catch (e) {
-      throw FirebaseExceptionMapper.map(e.code);
+      throw FirebaseCadastroExceptionMapper.map(e.code);
         } catch (_) {
           throw RegisterFailedException();
       }
@@ -42,9 +45,30 @@ class RemoteFiresource implements IRemoteFireSource {
       throw Exception('Erro ao salvar dados do usuário: $e');
     }
   }
+
+Future<String?> acessar(LoginEntity entity) async {
+  final auth = _environment.auth!;
+  try {
+    final userCredential = await auth.signInWithEmailAndPassword(
+      email: entity.login,
+      password: entity.password,
+    );
+
+    final user = userCredential.user;
+    if (user == null) {
+      throw Exception('Usuário não encontrado após login.');
+    }
+   
+    final idToken = await user.getIdToken();
+    return idToken;
+  } on FirebaseAuthException catch (e) {
+      throw FirebaseLoginExceptionMapper.map(e.code);
+    }catch (_) {
+      throw LoginNotFoundException();
+  }
 }
 
-
+}
 
 
   

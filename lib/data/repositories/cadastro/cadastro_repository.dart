@@ -17,7 +17,7 @@ final class RegisterRepository implements IRegisterRepository {
   @override
 Future<void> registerAsync(CadastroEntity register) async {
   try {
-    // 1. Cria o usuário no Firebase Auth e obtém o userId
+
     final userId = await _remoteFireSource.registerAuth(
       register.email,
       register.password,

@@ -2,7 +2,7 @@
 
 import 'package:i_pet/domain/error/cadastro/cadastro_exception.dart';
 
-class FirebaseExceptionMapper {
+class FirebaseCadastroExceptionMapper {
   static final Map<String, IRegisterException> _errorMap = {
     'invalid-email': RegisterEmailInvalidException(),
     'email-already-in-use': RegisterEmailAlreadyInUseException(),
