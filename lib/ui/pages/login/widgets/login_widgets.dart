@@ -4,6 +4,7 @@ import 'package:i_pet/core/widgets/progress_indicator_widget.dart';
 import 'package:i_pet/domain/entities/core/request_state_entity.dart';
 import 'package:i_pet/domain/entities/login/login_entity.dart';
 import 'package:i_pet/ui/pages/login/view_models/login_viewmodel.dart';
+import 'package:i_pet/utils/animated_route_helper.dart';
 import 'package:i_pet/utils/util_text.dart';
 
 
@@ -64,7 +65,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               ),
             ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: TextFormField(
@@ -100,7 +101,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   ),
 ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: ElevatedButton(
@@ -120,7 +121,18 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     ),
                   ),
                 ),
-              )
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    createAnimatedRouteFromName('/recuperar'),
+                  );
+                },
+                child: const Text(
+                  'Esqueci minha senha',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
             ],
           ),
         );

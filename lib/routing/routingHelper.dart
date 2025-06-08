@@ -6,6 +6,7 @@ import 'package:i_pet/ui/pages/home/tela_home.dart';
 import 'package:i_pet/ui/pages/login/tela_login.dart';
 import 'package:i_pet/ui/pages/pagina_inicial/tela_inicial.dart';
 import 'package:i_pet/ui/pages/perfil/tela_perfil.dart';
+import 'package:i_pet/ui/pages/recovery_Password/tela_recuperar.dart';
 
 final class RouteGeneratorHelper{
 
@@ -17,6 +18,7 @@ final class RouteGeneratorHelper{
       kCadastro => createRoutePage(const tela_cadastro()),
       kPerfil => createRoutePage(const TelaPerfil()),
       khome => createRoutePage(const TelaHome()),
+      krecuperarSenha => createRoutePage(const tela_RecuperarSenha()),
 
       // TODO: Handle this case.
       String() => throw UnimplementedError(),
@@ -50,6 +52,7 @@ static Route<dynamic> createRouteError() {
   static const String kCadastro = '/cadastro';
   static const String kPerfil = '/perfil';
   static const String khome = '/home';
+  static const String krecuperarSenha = '/recuperar';
 
 
 }
