@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:i_pet/configs/environment_helper.dart';
+import 'package:i_pet/configs/factory_viewmodel.dart';
 import 'package:i_pet/data/datasources/core/data_source.dart';
+import 'package:i_pet/domain/entities/cadastro/cadastro_entity.dart';
 import 'package:i_pet/domain/entities/login/login_entity.dart';
 import 'package:i_pet/domain/error/cadastro/cadastro_exception.dart';
 import 'package:i_pet/domain/error/cadastro/fireExceptionsCadastro.dart';
@@ -97,8 +100,13 @@ Future<Map<String, dynamic>> getUserInfo(String? urlID) async {
   }
 }
 
+Future<void> recoveryPassword(String login) async {
+  final auth = _environment.auth!;
+  try {
+    await auth.sendPasswordResetEmail(email: login);
+  } on FirebaseAuthException catch (e) {
+    throw Exception(e.message ?? 'Erro ao enviar e-mail');
+  }
 }
 
-
-  
-
+}

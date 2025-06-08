@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:i_pet/configs/environment_helper.dart';
+import 'package:i_pet/domain/entities/cadastro/cadastro_entity.dart';
 import 'package:i_pet/domain/entities/core/http_response_entity.dart';
 import 'package:i_pet/domain/entities/login/login_entity.dart';
 
@@ -52,4 +54,8 @@ abstract interface class IRemoteFireSource{
    Future<void> registerInfoUser (String urlID, Map<String, dynamic> userData);
    Future<String?> acessar (LoginEntity entity);
    Future<Map<String, dynamic>> getUserInfo(String? urlID);
+   Future<void> recoveryPassword (String login);
+
+   
+
 }
