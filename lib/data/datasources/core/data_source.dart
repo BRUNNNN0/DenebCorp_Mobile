@@ -3,6 +3,8 @@ import 'package:i_pet/configs/environment_helper.dart';
 import 'package:i_pet/domain/entities/cadastro/cadastro_entity.dart';
 import 'package:i_pet/domain/entities/core/http_response_entity.dart';
 import 'package:i_pet/domain/entities/login/login_entity.dart';
+import 'package:i_pet/domain/entities/service/service_entity.dart';
+import 'package:i_pet/domain/entities/serviceServiceOfferEntity/service_service_offer_entity.dart';
 
 
 
@@ -55,7 +57,5 @@ abstract interface class IRemoteFireSource{
    Future<String?> acessar (LoginEntity entity);
    Future<Map<String, dynamic>> getUserInfo(String? urlID);
    Future<void> recoveryPassword (String login);
-
-   
-
+   Future<List<ServiceServiceOfferEntity>?> getServices();
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:i_pet/configs/environment_helper.dart';
@@ -5,10 +6,13 @@ import 'package:i_pet/configs/factory_viewmodel.dart';
 import 'package:i_pet/data/datasources/core/data_source.dart';
 import 'package:i_pet/domain/entities/cadastro/cadastro_entity.dart';
 import 'package:i_pet/domain/entities/login/login_entity.dart';
+import 'package:i_pet/domain/entities/serviceOffer/service_offer_entity.dart';
+import 'package:i_pet/domain/entities/serviceServiceOfferEntity/service_service_offer_entity.dart';
 import 'package:i_pet/domain/error/cadastro/cadastro_exception.dart';
 import 'package:i_pet/domain/error/cadastro/fireExceptionsCadastro.dart';
 import 'package:i_pet/domain/error/login/fireExceptionsAuth.dart';
 import 'package:i_pet/domain/error/login/login_exception.dart';
+import 'package:i_pet/domain/entities/service/service_entity.dart';
 
 class RemoteFiresource implements IRemoteFireSource {
   final IEnvironmentHelper _environment;
@@ -106,6 +110,46 @@ Future<void> recoveryPassword(String login) async {
     await auth.sendPasswordResetEmail(email: login);
   } on FirebaseAuthException catch (e) {
     throw Exception(e.message ?? 'Erro ao enviar e-mail');
+  }
+}
+
+Future<List<ServiceServiceOfferEntity>> getServices() async {
+  try {
+    final db = FirebaseFirestore.instance;
+
+    final offersSnapshot = await db.collection('service-offer').get();
+
+    final offers = offersSnapshot.docs.map((offerDoc) async {
+      final offerData = offerDoc.data();
+      if (offerData == null || !offerData.containsKey('service_id')) {
+        print("Oferta sem service_id: ${offerDoc.id}");
+        return null;
+      }
+
+      final offer = ServiceOfferEntity.fromMap(offerData);
+
+      final serviceDoc =
+          await db.collection('services').doc(offer.serviceId).get();
+
+      if (!serviceDoc.exists || serviceDoc.data() == null) {
+        print("Serviço base não encontrado: ${offer.serviceId}");
+        return null;
+      }
+
+      final service = ServiceEntity.fromMap(serviceDoc.data()!);
+
+      return ServiceServiceOfferEntity(
+        id: offerDoc.id,
+        offer: offer,
+        service: service,
+      );
+    }).toList();
+
+    final results = await Future.wait(offers);
+    return results.whereType<ServiceServiceOfferEntity>().toList();
+  } catch (e) {
+    print("Erro ao buscar serviços: $e");
+    rethrow;
   }
 }
 
