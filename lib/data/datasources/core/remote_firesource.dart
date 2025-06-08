@@ -153,4 +153,35 @@ Future<List<ServiceServiceOfferEntity>> getServices() async {
   }
 }
 
+Future<String?> createService(ServiceEntity service) async{
+  try{
+    final firestore = _environment.firestore!;
+    final doc = await firestore.collection("services").add(service.toMap());
+    return doc.id;
+  }
+  catch (e) {
+      print("Error adding service: $e");
+      return null;
+    }
+}
+
+Future<String?> createServiceOffer(ServiceOfferEntity serviceOffer, String userId) async{
+  try{
+    final firestore = _environment.firestore!;
+    final auth = _environment.auth!;
+
+    final user=auth.currentUser;
+
+    if (user == null || user.uid != userId) {
+      throw Exception("Usuário não autenticado ou ID de usuário inválido.");
+    }
+    final doc = await firestore.collection("services").add(serviceOffer.toMap());
+    return doc.id;
+  } 
+  catch(e){
+    print("Error adding service: $e");
+    return null;
+  }
+}
+
 }
