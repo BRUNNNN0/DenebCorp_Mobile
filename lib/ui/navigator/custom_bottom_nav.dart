@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_pet/routing/routingHelper.dart';
+import 'package:i_pet/ui/navigator/rotas_index.dart';
 import 'package:i_pet/utils/animated_route_helper.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -16,16 +17,22 @@ class CustomBottomNavBar extends StatelessWidget {
         routeName = RouteGeneratorHelper.khome;
         break;
       case 1:
+        routeName = RouteGeneratorHelper.kbuscarservico;
+        break;
+      case 2:
         routeName = RouteGeneratorHelper.kPerfil;
         break;
       default:
         return;
     }
 
-    Navigator.pushReplacement(
-      context,
-      createAnimatedRouteFromName(routeName),
-    );
+    // Evita navegação redundante
+    if (ModalRoute.of(context)?.settings.name != routeName) {
+      Navigator.pushReplacement(
+        context,
+        createAnimatedRouteFromName(routeName),
+      );
+    }
   }
 
   @override
@@ -42,14 +49,21 @@ class CustomBottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(
             Icons.home,
-            color: currentIndex == 0 ? Colors.blue : Colors.grey.shade600,
+            color: currentIndex == rotasIndex.indexHome ? Colors.blue : Colors.grey.shade600,
           ),
           label: 'Início',
         ),
         BottomNavigationBarItem(
           icon: Icon(
+            Icons.search,
+            color: currentIndex == rotasIndex.indexPesquisar ? Colors.blue : Colors.grey.shade600,
+          ),
+          label: 'Pesquisar',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
             Icons.person,
-            color: currentIndex == 1 ? Colors.blue : Colors.grey.shade600,
+            color: currentIndex == rotasIndex.indexPerfil ? Colors.blue : Colors.grey.shade600,
           ),
           label: 'Perfil',
         ),
@@ -57,3 +71,5 @@ class CustomBottomNavBar extends StatelessWidget {
     );
   }
 }
+
+

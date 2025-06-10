@@ -104,6 +104,7 @@ Future<Map<String, dynamic>> getUserInfo(String? urlID) async {
   }
 }
 
+
 Future<void> recoveryPassword(String login) async {
   final auth = _environment.auth!;
   try {
@@ -113,9 +114,9 @@ Future<void> recoveryPassword(String login) async {
   }
 }
 
-Future<List<ServiceServiceOfferEntity>> getServices() async {
+Future<List<CombinedServiceOffer>?> getServices() async {
   try {
-    final db = FirebaseFirestore.instance;
+    final db = _environment.firestore!;
 
     final offersSnapshot = await db.collection('service-offer').get();
 
@@ -123,22 +124,21 @@ Future<List<ServiceServiceOfferEntity>> getServices() async {
       final offerData = offerDoc.data();
       if (offerData == null || !offerData.containsKey('service_id')) {
         print("Oferta sem service_id: ${offerDoc.id}");
+          print('offer.serviceId inválido para a oferta: ${offerDoc.id}');
         return null;
       }
 
       final offer = ServiceOfferEntity.fromMap(offerData);
 
-      final serviceDoc =
-          await db.collection('services').doc(offer.serviceId).get();
+      final serviceDoc = await db.collection('services').doc(offer.serviceId).get();
 
       if (!serviceDoc.exists || serviceDoc.data() == null) {
-        print("Serviço base não encontrado: ${offer.serviceId}");
         return null;
       }
 
       final service = ServiceEntity.fromMap(serviceDoc.data()!);
 
-      return ServiceServiceOfferEntity(
+      return CombinedServiceOffer(
         id: offerDoc.id,
         offer: offer,
         service: service,
@@ -146,8 +146,26 @@ Future<List<ServiceServiceOfferEntity>> getServices() async {
     }).toList();
 
     final results = await Future.wait(offers);
-    return results.whereType<ServiceServiceOfferEntity>().toList();
+
+    return results.whereType<CombinedServiceOffer>().toList();
   } catch (e) {
+    print("Erro ao buscar serviços: $e");
+    rethrow;
+  }
+}
+
+Future<List<ServiceEntity>> getServicesteste() async {
+    final db = _environment.firestore!;
+try{
+final offersSnapshot = await db.collection('services').get();
+
+  final services = offersSnapshot.docs.map((doc) {
+    final data = doc.data();
+    return ServiceEntity.fromMap(data);
+  }).toList();
+
+return services;
+} catch (e) {
     print("Erro ao buscar serviços: $e");
     rethrow;
   }

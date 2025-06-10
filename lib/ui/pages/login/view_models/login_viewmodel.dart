@@ -24,7 +24,6 @@ final class LoginViewModel extends Cubit<IRequestState<String>> {
 
       final String token = await _repository.authenticationAsync(user)!;
 
-print(token);
 
       if (token.trim().isNotEmpty) _onNavigateGoPerfil();
 

@@ -82,7 +82,7 @@ class _RecuperarSenhaFormWidgetState extends State<RecuperarSenhaFormWidget> {
               espaco_14(),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
                     createAnimatedRouteFromName('/login'),
                   );
                 },

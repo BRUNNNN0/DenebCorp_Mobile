@@ -21,13 +21,13 @@ class _tela_InicialState extends State<tela_Inicial> {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height - 250,
-            child: Image.asset("assets/image/primeiraTela.png", fit: BoxFit.cover),
+            height: MediaQuery.of(context).size.height - 190,
+            child: Image.asset("assets/image/Miaujudainicial.png", fit: BoxFit.cover),
           ),
           Align(
             alignment: Alignment.bottomCenter,
               child: Container(
-                height: 250, 
+                height: 200, 
                 width: double.infinity, 
                 color: Colors.white,
               child: Column(
@@ -55,20 +55,9 @@ class _tela_InicialState extends State<tela_Inicial> {
                     corDaFonte: Colors.blue, 
                     tamanhoDaFonte: 18,
                     onPressed: (){
-                         Navigator.of(context).pushNamed(RouteGeneratorHelper.kCadastro);
+                        Navigator.of(context).pushNamed(RouteGeneratorHelper.kCadastro);
                       }
-                    ),
-                  espaco_25(),
-
-                  SizedBox(
-                    child: Center(
-                      child: Text("Acessar com"),
-                    ),
-                  ),
-                  espaco_14(),
-
-                  botaoGoogle(),
-                
+                    ),                
                 ],
               ),
             ),

@@ -57,6 +57,7 @@ dependencies:
   cloud_firestore: ^5.6.8
   google_fonts: ^6.2.1
   google_sign_in: ^6.3.0
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,8 @@ flutter:
     - assets/image/pataLogo.png
     - assets/image/miniIconePata.png
     - assets/image/gabriel.jpg
+    - assets/image/Miaujuda.png
+    - assets/image/Miaujudainicial.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

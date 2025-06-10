@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 final class ServiceOfferEntity {
   final String createdAt;
   final double price;
@@ -20,12 +22,24 @@ final class ServiceOfferEntity {
     };
   }
 
+
   static ServiceOfferEntity fromMap(Map<String, dynamic> map) {
+
+  final timestamp = map['created_at'];
+  String createdAtString = '';
+
+  if (timestamp != null && timestamp is Timestamp) {
+    createdAtString = timestamp.toDate().toString(); // converte para string legível
+  } else if (timestamp != null && timestamp is String) {
+    createdAtString = timestamp; // já é string, passa direto
+  }
+
+
     return ServiceOfferEntity(
-      createdAt: map['createdAt'] ?? '',
+      createdAt: createdAtString,
       price: (map['price'] is num) ? (map['price'] as num).toDouble() : 0.0,
-      serviceId: map['serviceId'] ?? '',
-      userId: map['userId'] ?? '',
+      serviceId: map['service_id'] ?? '',
+      userId: map['user_id'] ?? '',
     );
   }
 }

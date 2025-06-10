@@ -57,5 +57,6 @@ abstract interface class IRemoteFireSource{
    Future<String?> acessar (LoginEntity entity);
    Future<Map<String, dynamic>> getUserInfo(String? urlID);
    Future<void> recoveryPassword (String login);
-   Future<List<ServiceServiceOfferEntity>?> getServices();
+   Future<List<CombinedServiceOffer>?> getServices();
+   Future<List<ServiceEntity>> getServicesteste();
 }

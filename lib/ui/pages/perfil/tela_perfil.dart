@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_pet/ui/navigator/custom_bottom_nav.dart';
+import 'package:i_pet/ui/navigator/rotas_index.dart';
 import 'package:i_pet/ui/pages/perfil/view_models/tela_perfil_factory_viewmodel.dart';
 import 'package:i_pet/ui/pages/perfil/view_models/tela_perfil_viewmodel.dart';
 import 'package:i_pet/ui/pages/perfil/widgets/tela_perfil_widgets.dart';
@@ -48,7 +49,7 @@ class _tela_perfil extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(currentIndex: 1),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex: rotasIndex.indexPerfil),
     );
   }
 }

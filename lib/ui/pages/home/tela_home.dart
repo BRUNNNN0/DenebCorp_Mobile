@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:i_pet/ui/navigator/custom_bottom_nav.dart';
+import 'package:i_pet/ui/navigator/rotas_index.dart';
+import 'package:i_pet/utils/animated_route_helper.dart';
 
 class TelaHome extends StatelessWidget {
   const TelaHome({super.key});
@@ -44,7 +46,10 @@ class TelaHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                    createAnimatedRouteFromName('/buscar'),);
+                    },
                     icon: const Icon(Icons.search),
                     label: const Text("Buscar Serviços"),
                     style: ElevatedButton.styleFrom(
@@ -56,7 +61,10 @@ class TelaHome extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                    createAnimatedRouteFromName('/CadastrarServico'));
+                    },
                     child: const Text("Oferecer Serviço"),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.blue,
@@ -78,7 +86,7 @@ class TelaHome extends StatelessWidget {
           ),
         ),
       ),
-       bottomNavigationBar: const CustomBottomNavBar(currentIndex: 0)
+       bottomNavigationBar: CustomBottomNavBar(currentIndex: rotasIndex.indexHome)
     );
   }
 
