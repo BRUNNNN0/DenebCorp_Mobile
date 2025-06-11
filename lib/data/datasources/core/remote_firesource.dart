@@ -122,13 +122,18 @@ Future<List<CombinedServiceOffer>?> getServices() async {
 
     final offers = offersSnapshot.docs.map((offerDoc) async {
       final offerData = offerDoc.data();
-      if (offerData == null || !offerData.containsKey('service_id')) {
-        print("Oferta sem service_id: ${offerDoc.id}");
-          print('offer.serviceId inválido para a oferta: ${offerDoc.id}');
+      
+      if (offerData == null || !offerData.containsKey('serviceId')) {
+        print("Oferta sem serviceId: ${offerDoc.id}");
         return null;
       }
 
       final offer = ServiceOfferEntity.fromMap(offerData);
+
+      if (offer.serviceId.isEmpty) {
+        print('serviceId vazio na oferta ${offerDoc.id}');
+        return null;
+      }
 
       final serviceDoc = await db.collection('services').doc(offer.serviceId).get();
 
@@ -154,21 +159,50 @@ Future<List<CombinedServiceOffer>?> getServices() async {
   }
 }
 
-Future<List<ServiceEntity>> getServicesteste() async {
-    final db = _environment.firestore!;
-try{
-final offersSnapshot = await db.collection('services').get();
 
-  final services = offersSnapshot.docs.map((doc) {
-    final data = doc.data();
-    return ServiceEntity.fromMap(data);
-  }).toList();
+Future<void> registerService(ServiceEntity register, String value, String chave) async {
+  final firestore = _environment.firestore!;
+  final auth = _environment.auth!;
 
-return services;
-} catch (e) {
-    print("Erro ao buscar serviços: $e");
-    rethrow;
+
+    if (chave == null) {
+      throw Exception('Token do usuário não encontrado.');
+    }
+
+
+    final currentUser = auth.currentUser;
+
+    if (currentUser == null) {
+      throw Exception('Usuário não autenticado.');
+    }
+
+
+  try {
+  
+    final precoConvertido = double.tryParse(value.replaceAll(',', '.'));
+    if (precoConvertido == null) {
+      throw Exception('Preço inválido');
+    }
+
+    final serviceRef = await firestore.collection('services').add(register.toMap());
+    final serviceId = serviceRef.id;
+
+  final tempo = Timestamp.now().toDate().toString();
+
+    final offer = ServiceOfferEntity(
+      createdAt: tempo,
+      price: precoConvertido,
+      serviceId: serviceId,
+      userId: chave,
+    );
+
+    await firestore.collection('service-offer').add(offer.toMap());
+
+  } catch (e) {
+    throw Exception('Erro ao registrar serviço e oferta: $e');
   }
 }
+
+
 
 }

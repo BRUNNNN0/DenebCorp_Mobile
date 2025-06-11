@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:i_pet/domain/entities/serviceServiceOfferEntity/service_service_offer_entity.dart';
 import 'package:i_pet/ui/pages/buscar_servico/tela_buscar_servico.dart';
+import 'package:i_pet/ui/pages/cadastrar_servico/tela_cadastrar_servico.dart';
 import 'package:i_pet/ui/pages/cadastrar_servico/widgets/cadastrar_servico_widgets.dart';
 import 'package:i_pet/ui/pages/cadastro/tela_cadastro.dart';
 import 'package:i_pet/ui/pages/detalhar_servico/widgets/detalhar_servico_widgets.dart';
@@ -27,7 +28,7 @@ final class RouteGeneratorHelper{
       kdetalharServico => args is CombinedServiceOffer
         ? createRoutePage(widgetDetalhar(servico: args))
         : createRouteError(),
-      kCadastrarServico => createRoutePage(CadastrarServicoScreen()),
+      kCadastrarServico => createRoutePage(telaCadastroService()),
 
       // TODO: Handle this case.
       String() => throw UnimplementedError(),

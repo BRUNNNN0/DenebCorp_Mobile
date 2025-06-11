@@ -13,15 +13,18 @@ class CustomBottomNavBar extends StatelessWidget {
 
     String routeName;
     switch (index) {
-      case 0:
+      case rotasIndex.indexHome:
         routeName = RouteGeneratorHelper.khome;
         break;
-      case 1:
+      case rotasIndex.indexPesquisar:
         routeName = RouteGeneratorHelper.kbuscarservico;
         break;
-      case 2:
+      case rotasIndex.indexPerfil:
         routeName = RouteGeneratorHelper.kPerfil;
         break;
+      case rotasIndex.indexCadastras:
+        routeName = RouteGeneratorHelper.kCadastrarServico;
+        break;  
       default:
         return;
     }
@@ -62,11 +65,19 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(
+            Icons.add,
+            color: currentIndex == rotasIndex.indexCadastras ? Colors.blue : Colors.grey.shade600,
+          ),
+          label: 'Cadastrar serviço',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
             Icons.person,
             color: currentIndex == rotasIndex.indexPerfil ? Colors.blue : Colors.grey.shade600,
           ),
           label: 'Perfil',
         ),
+        
       ],
     );
   }

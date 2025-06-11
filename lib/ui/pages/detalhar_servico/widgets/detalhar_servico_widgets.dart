@@ -21,13 +21,13 @@ class widgetDetalhar extends StatelessWidget {
           descricao: servico.service.description,
         ),
       ),
-      bottomNavigationBar: Padding(
+      /*bottomNavigationBar: Padding(
         padding: EdgeInsets.only(bottom: 16, left: 24, right: 24),
         child: botaoWhats(
           nomeServico: servico.service.name,
           numeroWhats: servico.service.whatsApp_number,
         ),
-      ),
+      ),*/
     );
   }
 }

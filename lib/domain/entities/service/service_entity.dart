@@ -3,14 +3,12 @@ final class ServiceEntity {
   final String createdAt;
   final String description;
   final String animalType;
-  final String whatsApp_number;
 
   const ServiceEntity({
     required this.name,
     required this.createdAt,
     required this.description,
     required this.animalType,
-    required this.whatsApp_number,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,7 +17,6 @@ final class ServiceEntity {
       "createdAt": createdAt,
       "description": description,
       "animalType": animalType,
-      "whatsApp_number": whatsApp_number,
     };
   }
 
@@ -29,7 +26,6 @@ final class ServiceEntity {
       createdAt: map['createdAt'] ?? '',
       description: map['description'] ?? '',
       animalType: map['animalType'] ?? '',
-      whatsApp_number: map['whatsApp_number'] ?? '',
     );
   }
 }

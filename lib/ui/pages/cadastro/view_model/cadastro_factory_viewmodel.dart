@@ -10,7 +10,7 @@ final class CadastroFactoryViewmodel implements IFactoryViewModel<CadastroViewmo
   CadastroViewmodel create(BuildContext context) {
     final IRemoteFireSource remoteFireSource = RemoteFactoryFireSource().create();
     final INonRelationalDataSource nonRelationalDataSource = NonRelationalFactoryDataSource().create();
-    final IRegisterRepository registerRepository = RegisterRepository(remoteFireSource);
+    final IRegisterRepository registerRepository = RegisterRepository(remoteFireSource, nonRelationalDataSource);
     return CadastroViewmodel(registerRepository);
   }
 
