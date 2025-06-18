@@ -40,8 +40,10 @@ class _tela_cadastro extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 50), 
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9, 
-              child: Image.asset("assets/image/logo.png", fit: BoxFit.contain),
+              width: MediaQuery.of(context).size.width * 0.5, 
+              child: Image.asset("assets/image/Miaujuda.png", fit: BoxFit.contain),
+
+              
             ),
           ),
           

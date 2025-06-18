@@ -124,7 +124,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
                     createAnimatedRouteFromName('/recuperar'),
                   );
                 },

@@ -1,7 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:i_pet/domain/entities/serviceServiceOfferEntity/service_service_offer_entity.dart';
+import 'package:i_pet/ui/pages/buscar_servico/tela_buscar_servico.dart';
+import 'package:i_pet/ui/pages/cadastrar_servico/tela_cadastrar_servico.dart';
+import 'package:i_pet/ui/pages/cadastrar_servico/widgets/cadastrar_servico_widgets.dart';
 import 'package:i_pet/ui/pages/cadastro/tela_cadastro.dart';
+import 'package:i_pet/ui/pages/detalhar_servico/widgets/detalhar_servico_widgets.dart';
 import 'package:i_pet/ui/pages/home/tela_home.dart';
 import 'package:i_pet/ui/pages/login/tela_login.dart';
 import 'package:i_pet/ui/pages/pagina_inicial/tela_inicial.dart';
@@ -19,6 +24,11 @@ final class RouteGeneratorHelper{
       kPerfil => createRoutePage(const TelaPerfil()),
       khome => createRoutePage(const TelaHome()),
       krecuperarSenha => createRoutePage(const tela_RecuperarSenha()),
+      kbuscarservico => createRoutePage(const TelaBuscarServico()),
+      kdetalharServico => args is CombinedServiceOffer
+        ? createRoutePage(widgetDetalhar(servico: args))
+        : createRouteError(),
+      kCadastrarServico => createRoutePage(telaCadastroService()),
 
       // TODO: Handle this case.
       String() => throw UnimplementedError(),
@@ -53,6 +63,7 @@ static Route<dynamic> createRouteError() {
   static const String kPerfil = '/perfil';
   static const String khome = '/home';
   static const String krecuperarSenha = '/recuperar';
-
-
+  static const String kbuscarservico = '/buscar';
+  static const String kdetalharServico = '/detalhar';
+  static const String kCadastrarServico = '/CadastrarServico';
 }
