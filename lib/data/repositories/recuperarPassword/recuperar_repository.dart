@@ -1,5 +1,7 @@
 import 'package:i_pet/data/datasources/core/data_source.dart';
-import 'package:i_pet/domain/error/login/login_exception.dart';
+import 'package:i_pet/domain/error/recuperarPassword/recuperar_exception.dart';
+import 'package:i_pet/domain/error/recuperarPassword/fireExceptionsRecuperar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract interface class IRecuperarRepository {
   Future<void> recuperarSenha(String login);
@@ -14,10 +16,10 @@ final class RecuperarRepository implements IRecuperarRepository {
   Future<void> recuperarSenha(String login) async {
     try {
       await _remoteFireSource.recoveryPassword(login);
-    } on ILoginException catch (e) {
-      rethrow;
-    } catch (_) {
-      throw Exception('Erro inesperado ao recuperar senha.');
+    } on FirebaseException catch (e) {
+      throw FirebaseRecuperarExceptionMapper.map(e.code);
+    } catch (e) {
+      throw RecuperarFailedException();
     }
   }
 }

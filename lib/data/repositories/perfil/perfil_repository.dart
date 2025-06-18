@@ -7,8 +7,9 @@ import 'package:i_pet/domain/entities/core/http_response_entity.dart';
 import 'package:i_pet/core/library/extensions.dart';
 import 'package:i_pet/domain/entities/login/login_entity.dart';
 import 'package:i_pet/domain/entities/user/user_entity.dart';
-import 'package:i_pet/domain/error/login/login_exception.dart';
-
+import 'package:i_pet/domain/error/perfil/perfil_exception.dart';
+import 'package:i_pet/domain/error/perfil/fireExceptionsPerfil.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract interface class IPerfilRepository {
     getUserDataAsync();
@@ -24,13 +25,14 @@ final class PerfilRepository implements IPerfilRepository {
   Future<UserEntity> getUserDataAsync() async {
     final token = await _nonRelationalDataSource.loadString(DataBaseNoSqlSchemaHelper.kUserToken);
     
-    try{
+    try {
       final usuario = (await _remoteFireSource.getUserInfo(token))!;
       final usuarioMAP = UserEntity.fromMap(usuario as Map<String, dynamic>);
-    
       return usuarioMAP;
-    } on ILoginException catch (e) {
-    rethrow;
-   }
+    } on FirebaseException catch (e) {
+      throw FirebasePerfilExceptionMapper.map(e.code);
+    } catch (e) {
+      throw PerfilFailedException();
+    }
   } 
 }
