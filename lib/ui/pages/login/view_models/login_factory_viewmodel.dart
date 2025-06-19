@@ -6,9 +6,9 @@ import 'package:i_pet/ui/pages/login/view_models/login_viewmodel.dart';
 final class LoginFactoryViewModel implements IFactoryViewModel<LoginViewModel> {
   @override
   LoginViewModel create(BuildContext context) {
-    final IRemoteDataSource remoteDataSource = RemoteFactoryDataSource().create();
+    final IRemoteFireSource remoteFireSource = RemoteFactoryFireSource().create();
     final INonRelationalDataSource nonRelationalDataSource = NonRelationalFactoryDataSource().create();
-    final ILoginRepository loginRepository = LoginRepository(remoteDataSource, nonRelationalDataSource);
+    final ILoginRepository loginRepository = LoginRepository(remoteFireSource, nonRelationalDataSource);
     return LoginViewModel(loginRepository);
   }
 

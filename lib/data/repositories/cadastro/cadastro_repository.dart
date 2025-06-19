@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:i_pet/configs/data_base_schema_helper.dart';
 import 'package:i_pet/data/datasources/core/data_source.dart';
 import 'package:i_pet/domain/entities/cadastro/cadastro_entity.dart';
 import 'package:i_pet/core/library/extensions.dart';
@@ -11,13 +12,16 @@ abstract interface class IRegisterRepository {
 
 final class RegisterRepository implements IRegisterRepository {
   final IRemoteFireSource _remoteFireSource;
+  final INonRelationalDataSource _nonRelationalDataSource;
 
-  const RegisterRepository(this._remoteFireSource);
+
+  const RegisterRepository(this._remoteFireSource, this._nonRelationalDataSource);
 
   @override
 Future<void> registerAsync(CadastroEntity register) async {
+  final token = await _nonRelationalDataSource.loadString(DataBaseNoSqlSchemaHelper.kUserToken);
   try {
-    // 1. Cria o usuário no Firebase Auth e obtém o userId
+
     final userId = await _remoteFireSource.registerAuth(
       register.email,
       register.password,

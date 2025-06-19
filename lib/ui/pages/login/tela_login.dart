@@ -24,11 +24,10 @@ class _tela_login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:const Color(0xFFE3F2FD),
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          FundoDegradeAzulClaro(),
-          
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
@@ -43,7 +42,7 @@ class _tela_login extends StatelessWidget {
           Align(
             alignment: Alignment.center,
               child: Container(
-                height: 280, 
+                height: 300, 
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                   color: Colors.white,

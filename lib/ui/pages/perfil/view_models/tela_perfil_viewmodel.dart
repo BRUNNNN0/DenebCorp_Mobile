@@ -4,7 +4,7 @@ import 'package:i_pet/core/widgets/show_dialog_widget.dart';
 import 'package:i_pet/data/repositories/perfil/perfil_repository.dart';
 import 'package:i_pet/domain/entities/core/request_state_entity.dart';
 import 'package:i_pet/domain/entities/user/user_entity.dart';
-
+import 'package:i_pet/domain/error/perfil/perfil_exception.dart';
 import 'package:i_pet/utils/util_text.dart';
 
 final class TelaPerfilViewModel extends Cubit<IRequestState<UserEntity>> {
@@ -17,10 +17,10 @@ final class TelaPerfilViewModel extends Cubit<IRequestState<UserEntity>> {
       _emitter(RequestProcessingState());
 
       final UserEntity user = await _repository.getUserDataAsync()!;
-      debugPrint("userTeste: ${user.toMap()}");
+  
       _emitter(RequestCompletedState(value: user));
+      
     } catch (error) {
-      debugPrint("data: $error");
       final String erorrDescription = _createErrorDescription(error);
       showSnackBar(erorrDescription);
       _emitter(RequestErrorState(error: error));
@@ -28,7 +28,11 @@ final class TelaPerfilViewModel extends Cubit<IRequestState<UserEntity>> {
   }
 
   String _createErrorDescription(Object? error) {
-    return UtilText.labelLoginFailure;
+    if (error is PerfilNotFoundException) return UtilText.labelPerfilNotFound;
+    if (error is PerfilUpdateFailedException) return UtilText.labelPerfilUpdateFailed;
+    if (error is PerfilDeleteFailedException) return UtilText.labelPerfilDeleteFailed;
+    if (error is PerfilInvalidDataException) return UtilText.labelPerfilInvalidData;
+    return UtilText.labelPerfilFailure;
   }
 
   void _emitter(IRequestState<UserEntity> state) {

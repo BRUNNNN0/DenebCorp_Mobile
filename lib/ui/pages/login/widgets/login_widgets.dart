@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_pet/core/widgets/progress_indicator_widget.dart';
 import 'package:i_pet/domain/entities/core/request_state_entity.dart';
+import 'package:i_pet/domain/entities/login/login_entity.dart';
 import 'package:i_pet/ui/pages/login/view_models/login_viewmodel.dart';
+import 'package:i_pet/utils/animated_route_helper.dart';
 import 'package:i_pet/utils/util_text.dart';
 
 
@@ -63,7 +65,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               ),
             ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: TextFormField(
@@ -99,15 +101,17 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   ),
 ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: ElevatedButton(
-                    onPressed: onAuth,
-                    child: !isProcessing ? Text(
+                    onPressed: isProcessing ? null : onAuth,
+                    child: isProcessing 
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : Text(
                     UtilText.labelLoginTitle.toUpperCase(),
                     style: const TextStyle(color: Colors.white),
-                  ): const ProgressIndicatorWidget(),
+                    ),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.blue,
@@ -117,7 +121,18 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     ),
                   ),
                 ),
-              )
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    createAnimatedRouteFromName('/recuperar'),
+                  );
+                },
+                child: const Text(
+                  'Esqueci minha senha',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
             ],
           ),
         );
@@ -126,8 +141,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   }
 
   void onAuth() {
-    _loginViewModel.onAuthentication(_emailTextController.text, _passwordTextController.text);
+    final loginEntity = LoginEntity(login: _emailTextController.text, password: _passwordTextController.text);
+    _loginViewModel.onAuthentication(loginEntity);
   }
 }
+
 
 

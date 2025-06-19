@@ -55,11 +55,23 @@ dependencies:
   firebase_core: ^3.13.1
   firebase_auth: ^5.5.4
   cloud_firestore: ^5.6.8
+  google_fonts: ^6.2.1
+  google_sign_in: ^6.3.0
+  url_launcher: ^6.3.1
+  
+
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    
+  
+  flutter_launcher_icons: ^0.14.4
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/app_icon.png"  
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -88,6 +100,8 @@ flutter:
     - assets/image/pataLogo.png
     - assets/image/miniIconePata.png
     - assets/image/gabriel.jpg
+    - assets/image/Miaujuda.png
+    - assets/image/Miaujudainicial.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
